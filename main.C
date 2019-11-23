@@ -20,12 +20,15 @@
 #include "TASK4.H"
 #include "TASK5.H"
 #include "TASK6.H"
+#include "myApp.h"
 
 using namespace std;
 
 
 int main(){
 	srand(time(nullptr));
+	myApp varianteA;
+	varianteA.xMax;
 }
 
 
