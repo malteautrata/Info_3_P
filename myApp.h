@@ -26,6 +26,7 @@ public:
 		int x = 0;
 		int y = 0;
 		myWorld.printBoard();
+
 		while(y <= yMax)
 		{
 			while(x <= xMax)
@@ -33,6 +34,7 @@ public:
 				myWorld.shoot(x, y);
 				x++;
 			}
+			x = 0;
 			y++;
 		}
 		myWorld.printBoard();

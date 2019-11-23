@@ -28,8 +28,7 @@ using namespace std;
 int main(){
 	srand(time(nullptr));
 	myApp varianteA;
-	//varianteA.varianteA();
-	TASK3::demoTask3();
+	varianteA.varianteA();
 }
 
 
