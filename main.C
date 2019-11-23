@@ -28,7 +28,8 @@ using namespace std;
 int main(){
 	srand(time(nullptr));
 	myApp varianteA;
-	varianteA.xMax;
+	//varianteA.varianteA();
+	TASK3::demoTask3();
 }
 
 

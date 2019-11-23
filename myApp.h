@@ -12,16 +12,37 @@
 namespace std {
 
 class myApp {
+public:
 	int xMax = 10;
 	int yMax = 10;
 	int fiver = 1;
-	int fourer = 2;
-	int threer = 5;
-	int twoer = 6;
+	int fourer = 1;
+	int threer = 1;
+	int twoer = 1;
+
 	TASK3::World myWorld = TASK3::World(xMax, yMax, fiver, fourer, threer, twoer);
 
-	void varianteA();
-	virtual void VarianteB() = 0;
+	void varianteA(){
+		int x = 0;
+		int y = 0;
+		myWorld.printBoard();
+		while(y <= yMax)
+		{
+			while(x <= xMax)
+			{
+				myWorld.shoot(x, y);
+				x++;
+			}
+			y++;
+		}
+		myWorld.printBoard();
+
+	}
+
+	void VarianteB()
+	{
+
+	}
 };
 
 } /* namespace std */
