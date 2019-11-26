@@ -27,8 +27,12 @@ using namespace std;
 
 int main(){
 	srand(time(nullptr));
-	myApp varianteA;
-	varianteA.varianteA();
+
+	// Erzeugung eines Objektes der Klasse myApp
+	myApp variante1;
+
+	// Aufrufen des ersten Algorithmus um alle Schiffe zu versenken
+	variante1.varianteA();
 }
 
 
