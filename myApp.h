@@ -9,8 +9,21 @@
 #define MYAPP_H_
 #include "TASK3.H"
 
+/**
+ *
+ * \namespace std
+ *
+ * \brief Namesapce für Lösungen des Praktikums
+ *
+ */
 namespace std {
 
+/**
+ *
+ * \class myApp
+ *
+ * \brief Zwei unterschiedliche Algorithmen um alle Schiffe zu versenken
+ */
 class myApp {
 public:
 
