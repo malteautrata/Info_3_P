@@ -41,7 +41,7 @@ public:
 	// Anzahl der vierer Schiffe
 	int fourer = 1;
 
-	// Anzhal der dreier Schiffe
+	// Anzahl der dreier Schiffe
 	int threer = 1;
 
 	// Anzahl der zweier Schiffe
