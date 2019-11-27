@@ -35,7 +35,7 @@ public:
 	//Höhe des Spielfeldes
 	int yMax = 10;
 
-	// Anzhal der fünfer Schiffe
+	// Anzahl der fünfer Schiffe
 	int fiver = 1;
 
 	// Anzahl der vierer Schiffe
