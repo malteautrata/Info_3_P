@@ -32,18 +32,27 @@ TASK4.o:	TASK4.C
 
 TASK5.o:	TASK5.C
 	$(CC) -c $<  -std=c++11 
+	
+myServer.o:	myServer.c
+	$(CC) -c $<  -std=c++11 
 
 main.o:	main.C
 	$(CC) -c $<  -std=c++11	
 
+myClient.o:	myClient.c
+	$(CC) -c $<  -std=c++11	
 
 
 main:	$(OBJS)
 	$(CC) -o $@ $^ -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11 -lpthread $(LIBS)
 	
 
-server:	server.o
-	$(CC) -o server server.o SIMPLESOCKET.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
+myClient:	myClient.o SIMPLESOCKET.o
+	$(CC) -o myClient myClient.o SIMPLESOCKET.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
+
+
+server:	server.o myServer.o TASK3.o
+	$(CC) -o server server.o myServer.o TASK3.o  SIMPLESOCKET.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
 
 client:	client.o
 	$(CC) -o client client.o SIMPLESOCKET.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
@@ -56,7 +65,7 @@ doc:
 	
 	
 all:	$(DEMOTARGET)
-	make clean  && make main && make server && make client
+	make clean  && make main && make server && make client  && make myClient
 
 run:	main	
 	./main
