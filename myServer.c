@@ -28,9 +28,16 @@ string myServer::myResponse(string input) {
 			return string("RES[-2]");
 		}
 
-		cout << "shoot(" << x << "," << y << ")";
+		cout << "shoot(" << x << "," << y << ")" << endl;
 		result = myWorld->shoot(x,y);
 		ss << "RES[" << result << "]";
+
+		if (result == TASK3::GAME_OVER)
+		{
+			myWorld->printBoard();
+		}
+
+
 		return ss.str();
 	}
 

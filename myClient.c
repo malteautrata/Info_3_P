@@ -26,19 +26,19 @@ int main() {
 
 	//connect to host
 	c.conn(host , 2021);
-	cout << "finish after " <<  varianteA(&c) << " moves" << endl;
+	cout << "finished after " <<  varianteA(&c) << " moves" << endl;
 }
 
 int varianteA(TCPclient *ptrC)
 {
 	string msg;
 	string response;
-	int x = 0;
-	int y = 0;
+	int x = 1;
+	int y = 1;
 	int c = 0;
-	while (y < 10)
+	while (y <= 10)
 	{
-		while (x < 10)
+		while (x <= 10)
 		{
 			stringstream msgStream;
 			msgStream << "COORD[" <<  x << ", "<< y <<"]" ;
@@ -47,12 +47,13 @@ int varianteA(TCPclient *ptrC)
 
 			c++;
 			x++;
-			if(response.compare(0,1,"4") == 0){
+			if(response.compare(0,5,"RES[4") == 0){
 				return c;
 			}
+			cout << response << endl;
 		}
 		y++;
-		x = 0;
+		x = 1;
 	}
 	return c;
 }
