@@ -23,10 +23,19 @@ int main() {
 	string host = "localhost";
 	string msg;
 	string response;
-
+	int avgCounter = 0;
 	//connect to host
 	c.conn(host , 2021);
-	cout << "finished after " <<  varianteA(&c) << " moves" << endl;
+
+	for (int i = 0; i < 5; i++)
+	{
+		c.sendData("NEWGAME");
+		int steps = varianteA(&c);
+		cout << "finished after " <<  steps << " moves" << endl;
+		avgCounter += steps;
+	}
+	avgCounter = avgCounter/5;
+	cout << avgCounter << endl;
 }
 
 int varianteA(TCPclient *ptrC)
@@ -50,7 +59,6 @@ int varianteA(TCPclient *ptrC)
 			if(response.compare(0,5,"RES[4") == 0){
 				return c;
 			}
-			cout << response << endl;
 		}
 		y++;
 		x = 1;

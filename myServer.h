@@ -15,7 +15,6 @@ public:
 
 	myServer(int port, int maxDataSizeReciv):TCPserver(port, maxDataSizeReciv){
 		myWorld = new TASK3::World;
-		myWorld->printBoard();
 	}
 
 	string myResponse(string input);
