@@ -36,8 +36,6 @@ string myServer::myResponse(string input) {
 		{
 			myWorld->printBoard();
 		}
-
-
 		return ss.str();
 	}
 

@@ -10,11 +10,14 @@
 #include <sstream>
 #include <unistd.h> //contains various constants
 #include "SIMPLESOCKET.H"
-
+#include <time.h>
+#include <stdlib.h>
 
 using namespace std;
 
 int varianteA(TCPclient *ptrC);
+int varianteB(TCPclient *ptrC);
+
 
 int main() {
 	srand(time(NULL));
@@ -27,38 +30,48 @@ int main() {
 	//connect to host
 	c.conn(host , 2021);
 
-	for (int i = 0; i < 5; i++)
+	int stepsCount = 5;
+	for (int i = 0; i < stepsCount; i++)
 	{
-		c.sendData("NEWGAME");
 		int steps = varianteA(&c);
 		cout << "finished after " <<  steps << " moves" << endl;
 		avgCounter += steps;
 	}
-	avgCounter = avgCounter/5;
-	cout << avgCounter << endl;
+	avgCounter = avgCounter/stepsCount;
+	cout << "average Steps A:" << avgCounter << endl;
+
+	avgCounter = 0;
+
+	for (int i = 0; i < stepsCount; i++)
+	{
+			int steps = varianteB(&c);
+			cout << "finished after " <<  steps << " moves" << endl;
+			avgCounter += steps;
+	}
+	avgCounter = avgCounter/stepsCount;
+	cout << "average Steps B:" << avgCounter << endl;
+
 }
 
 int varianteA(TCPclient *ptrC)
 {
+	ptrC->sendData("NEWGAME");
 	string msg;
 	string response;
 	int x = 1;
 	int y = 1;
 	int c = 0;
-	while (y <= 10)
+	while (y <= 10 && response.compare(0,5,"RES[4") != 0)
 	{
-		while (x <= 10)
+		while (x <= 10 && response.compare(0,5,"RES[4") != 0)
 		{
 			stringstream msgStream;
 			msgStream << "COORD[" <<  x << ", "<< y <<"]" ;
 			ptrC->sendData(msgStream.str());
 			response = ptrC->receive(32);
-
+			//cout << "shoot: " << "X: " << x << " " << "Y: " << y << endl;
 			c++;
 			x++;
-			if(response.compare(0,5,"RES[4") == 0){
-				return c;
-			}
 		}
 		y++;
 		x = 1;
@@ -66,8 +79,10 @@ int varianteA(TCPclient *ptrC)
 	return c;
 }
 
-void varianteB()
+int varianteB(TCPclient *ptrC)
 {
+	//ptrC->sendData("NEWGAME");
 
+	return 0;
 }
 
