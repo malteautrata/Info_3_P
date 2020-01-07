@@ -14,7 +14,7 @@ class myServer:public TCPserver {
 public:
 
 	myServer(int port, int maxDataSizeReciv):TCPserver(port, maxDataSizeReciv){
-		myWorld = new TASK3::World;
+
 	}
 
 	string myResponse(string input);

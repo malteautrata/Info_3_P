@@ -36,6 +36,7 @@ int main() {
 		int steps = varianteA(&c);
 		cout << "finished after " <<  steps << " moves" << endl;
 		avgCounter += steps;
+		sleep(1);
 	}
 	avgCounter = avgCounter/stepsCount;
 	cout << "average Steps A:" << avgCounter << endl;
@@ -55,23 +56,32 @@ int main() {
 
 int varianteA(TCPclient *ptrC)
 {
-	ptrC->sendData("NEWGAME");
-	string msg;
-	string response;
+	stringstream msgStream;
+	string response = "";
+	msgStream << "NEWGAME";
+
+	ptrC->sendData(msgStream.str());
+	msgStream.str("");
+
 	int x = 1;
 	int y = 1;
 	int c = 0;
-	while (y <= 10 && response.compare(0,5,"RES[4") != 0)
+
+	while (y <= 10)
 	{
-		while (x <= 10 && response.compare(0,5,"RES[4") != 0)
+		while (x <= 10)
 		{
-			stringstream msgStream;
 			msgStream << "COORD[" <<  x << ", "<< y <<"]" ;
 			ptrC->sendData(msgStream.str());
+			msgStream.str("");
 			response = ptrC->receive(32);
-			//cout << "shoot: " << "X: " << x << " " << "Y: " << y << endl;
 			c++;
 			x++;
+
+			if (response.compare(0,5,"RES[4") == 0)
+			{
+				return c;
+			}
 		}
 		y++;
 		x = 1;
@@ -81,7 +91,6 @@ int varianteA(TCPclient *ptrC)
 
 int varianteB(TCPclient *ptrC)
 {
-	//ptrC->sendData("NEWGAME");
 
 	return 0;
 }
