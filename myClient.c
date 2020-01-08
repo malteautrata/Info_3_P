@@ -17,51 +17,52 @@ using namespace std;
 
 int varianteA(TCPclient *ptrC);
 int varianteB(TCPclient *ptrC);
+void startNewGame(TCPclient *ptrC);
 
+stringstream msgStream;
+string response = "";
 
 int main() {
 	srand(time(NULL));
 
 	TCPclient c;
 	string host = "localhost";
-	int avgCounter = 0;
+	int avgCounterA = 0;
+	int avgCounterB = 0;
 
 	//connect to host
 	c.conn(host , 2021);
 
-	int stepsCount = 5;
+	int stepsCount = 100;
+
 	for (int i = 0; i < stepsCount; i++)
 	{
 		int steps = varianteA(&c);
 		cout << "finished after " <<  steps << " moves" << endl;
-		avgCounter += steps;
-		sleep(1);
+		avgCounterA += steps;
+		sleep(0.1);
 	}
-	avgCounter = avgCounter/stepsCount;
-	cout << "average Steps A:" << avgCounter << endl;
+	avgCounterA = avgCounterA/stepsCount;
 
-	avgCounter = 0;
 
 	for (int i = 0; i < stepsCount; i++)
 	{
 			int steps = varianteB(&c);
 			cout << "finished after " <<  steps << " moves" << endl;
-			avgCounter += steps;
+			avgCounterB += steps;
+			sleep(0.1);
 	}
-	avgCounter = avgCounter/stepsCount;
-	cout << "average Steps B:" << avgCounter << endl;
+	avgCounterB = avgCounterB/stepsCount;
+
+	cout << endl;
+	cout << "average Steps Step by Step:" << avgCounterA << endl;
+	cout << "average Steps Random:" << avgCounterB << endl;
 
 }
 
 int varianteA(TCPclient *ptrC)
 {
-	stringstream msgStream;
-	string response = "";
-	msgStream << "NEWGAME";
-
-	ptrC->sendData(msgStream.str());
-	msgStream.str("");
-
+	startNewGame(ptrC);
 	int x = 1;
 	int y = 1;
 	int c = 0;
@@ -90,7 +91,41 @@ int varianteA(TCPclient *ptrC)
 
 int varianteB(TCPclient *ptrC)
 {
+	startNewGame(ptrC);
+	/*
+	int c = 0;
+	int x [10];
+	int y [10];
 
-	return 0;
+	for(int i = 0; i < 100; i++)
+	{
+		x[i] = i;
+		y[i] = i;
+	}
+*/
+	int c = 0;
+
+	while (response.compare(0,5,"RES[4") != 0)
+	{
+		c++;
+		int x = (rand() % 10)+1;
+
+
+		int y = (rand() % 10)+1;
+
+		msgStream << "COORD[" <<  x << ", "<< y <<"]" ;
+		ptrC->sendData(msgStream.str());
+		msgStream.str("");
+		response = ptrC->receive(32);
+	}
+	return c;
 }
 
+void startNewGame(TCPclient *ptrC)
+{
+	msgStream << "NEWGAME";
+	response = "";
+	ptrC->sendData(msgStream.str());
+	msgStream.str("");
+	response = ptrC->receive(32);
+}
