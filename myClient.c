@@ -5,6 +5,24 @@
  *      Author: ubuntu
  */
 
+/**
+ *
+ * \file myClient.c
+ *
+ * \brief Contains Class myClient.
+ *
+ */
+
+/**
+ *
+ * \class myClient
+ *
+ * \brief Implements a class which uses TCPclient
+ * Implements two variants to solve the game
+ *
+ *
+ */
+
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -15,8 +33,25 @@
 
 using namespace std;
 
+/**
+ *
+ * \brief Shoots every Block in order, stop if all ships are destroyed
+ *
+ */
 int stepByStep(TCPclient *ptrC);
+
+/**
+ *
+ * \brief Shoots a random Block, till all ships are destroyed
+ *
+ */
 int random(TCPclient *ptrC);
+
+/**
+ *
+ * \brief generates a new World to play
+ *
+ */
 void startNewGame(TCPclient *ptrC);
 
 stringstream msgStream;
