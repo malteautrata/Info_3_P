@@ -24,9 +24,8 @@ int main() {
 
 	TCPclient c;
 	string host = "localhost";
-	string msg;
-	string response;
 	int avgCounter = 0;
+
 	//connect to host
 	c.conn(host , 2021);
 
