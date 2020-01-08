@@ -15,8 +15,8 @@
 
 using namespace std;
 
-int varianteA(TCPclient *ptrC);
-int varianteB(TCPclient *ptrC);
+int stepByStep(TCPclient *ptrC);
+int random(TCPclient *ptrC);
 void startNewGame(TCPclient *ptrC);
 
 stringstream msgStream;
@@ -37,7 +37,7 @@ int main() {
 
 	for (int i = 0; i < stepsCount; i++)
 	{
-		int steps = varianteA(&c);
+		int steps = stepByStep(&c);
 		cout << "finished after " <<  steps << " moves" << endl;
 		avgCounterA += steps;
 		sleep(0.1);
@@ -47,7 +47,7 @@ int main() {
 
 	for (int i = 0; i < stepsCount; i++)
 	{
-			int steps = varianteB(&c);
+			int steps = random(&c);
 			cout << "finished after " <<  steps << " moves" << endl;
 			avgCounterB += steps;
 			sleep(0.1);
@@ -60,7 +60,7 @@ int main() {
 
 }
 
-int varianteA(TCPclient *ptrC)
+int stepByStep(TCPclient *ptrC)
 {
 	startNewGame(ptrC);
 	int x = 1;
@@ -89,7 +89,7 @@ int varianteA(TCPclient *ptrC)
 	return c;
 }
 
-int varianteB(TCPclient *ptrC)
+int random(TCPclient *ptrC)
 {
 	startNewGame(ptrC);
 	/*
