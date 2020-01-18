@@ -29,10 +29,10 @@ int main(){
 	srand(time(nullptr));
 
 	// Erzeugung eines Objektes der Klasse myApp
-	myApp variante1;
+	TASK5::demoOB01();
 
 	// Aufrufen des ersten Algorithmus um alle Schiffe zu versenken
-	variante1.varianteA();
+	//variante1.demo0B00();
 }
 
 

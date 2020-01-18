@@ -73,9 +73,9 @@ int main() {
 	for (int i = 0; i < stepsCount; i++)
 	{
 		int steps = stepByStep(&c);
-		cout << "finished after " <<  steps << " moves" << endl;
+		//cout << "finished after " <<  steps << " moves" << endl;
 		avgCounterA += steps;
-		sleep(0.1);
+		//sleep(0.1);
 	}
 	avgCounterA = avgCounterA/stepsCount;
 
@@ -83,9 +83,9 @@ int main() {
 	for (int i = 0; i < stepsCount; i++)
 	{
 			int steps = random(&c);
-			cout << "finished after " <<  steps << " moves" << endl;
+			//cout << "finished after " <<  steps << " moves" << endl;
 			avgCounterB += steps;
-			sleep(0.1);
+			//sleep(0.1);
 	}
 	avgCounterB = avgCounterB/stepsCount;
 

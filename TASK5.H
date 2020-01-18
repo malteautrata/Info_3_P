@@ -482,9 +482,9 @@ public:
 				std::endl;
 
 
-		//if(ptrSubject_ != nullptr){
-		//	((ConcreteSubject *) ptrSubject_)->setState(ID_ + "got it!");
-		//};
+		if(ptrSubject_ != nullptr){
+			((ConcreteSubject *) ptrSubject_)->setState(ID_ + "got it!");
+		};
 
 	};
 
